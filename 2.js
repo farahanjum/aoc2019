@@ -13,25 +13,22 @@ const part1 = (input) => {
         if (input[i] == 99) break;
         if (input[i] == 1) {
             input[input[i + 3]] = input[input[i + 1]] + input[input[i + 2]];
-            i += 3;
         }
         else if (input[i] == 2) {
             input[input[i + 3]] = input[input[i + 1]] * input[input[i + 2]];
-            i += 3;
         }
-        else continue;
+        i += 3;
     }
     return input;
 }
 
 const part2 = (input) => {
-    for (var i=0; i< 100; i++){
-        for (var j=0; j<100; j++){
+    for (var i = 0; i < 100; i++){
+        for (var j = 0; j < 100; j++){
             input = getInput();
             input[1] = i, input[2] = j;
-            const testingVal = part1(input)[0];
-            if (testingVal == 19690720) {
-                console.log('haulting----------', i, j);
+            if (part1(input)[0] == 19690720) {
+                console.log('halting----------', i, j);
                 break;
             }
         }
