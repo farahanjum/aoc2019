@@ -12,29 +12,17 @@ const part1 = (input) => {
     for (var i = 0; i < input.length; i++) {
         if (input[i] == 99) break;
         if (input[i] == 1) {
-            input = doAddOp(input, i);
+            input[input[i + 3]] = input[input[i + 1]] + input[input[i + 2]];
             i += 3;
         }
         else if (input[i] == 2) {
-            input = doMultiplyOp(input, i);
+            input[input[i + 3]] = input[input[i + 1]] * input[input[i + 2]];
             i += 3;
         }
         else continue;
     }
     return input;
 }
-
-
-const doAddOp = (arr, i) => {
-    if(i+3 < arr.length) arr[arr[i + 3]] = arr[arr[i+1]] + arr[arr[i+2]];
-    return arr;
-}
-
-const doMultiplyOp = (arr, i) => {
-    if (i + 3 < arr.length) arr[arr[i + 3]] = arr[arr[i + 1]] * arr[arr[i + 2]];
-    return arr;
-}
-
 
 const part2 = (input) => {
     for (var i=0; i< 100; i++){
@@ -50,4 +38,4 @@ const part2 = (input) => {
     }
 }
 console.log((part2(getInput())));
-// console.log(part1(prepInput(getInput())));
+console.log(part1(prepInput(getInput()))[0]);

@@ -1,21 +1,20 @@
 var fs = require('fs');
-var input = fs.readFileSync('1.txt').toString().split("\n");
+var input = fs.readFileSync('1.txt').toString().split("\n").map(num => parseInt(num));
 
-const fuelCalc = (num) => {
-    return Math.floor(num / 3) - 2;
+const getModuleFuel = (mass) => {
+    return Math.floor(mass / 3) - 2;
 }
 const overheadFuel = (fuel) => {
-    const overhead = fuelCalc(fuel);
+    const overhead = getModuleFuel(fuel);
     if (overhead <= 0) return 0;
     else return overhead + overheadFuel(overhead);
 }
-
-const calculateTotalFuel = (moduleMass) => {
-    const moduleFuel = fuelCalc(moduleMass);
+const calculateTotalFuelPart2 = (moduleMass) => {
+    const moduleFuel = getModuleFuel(moduleMass);
     return moduleFuel + overheadFuel(moduleFuel);
 }
-const totalFuel = input.map(num => parseInt(num))
-    .map(calculateTotalFuel)
-    .reduce((prevNum, curNum) => prevNum + curNum);
+const part1 = input.map(getModuleFuel).reduce((a,b) => a + b);
+const part2 = input.map(calculateTotalFuelPart2).reduce((a, b) => a + b);
 
-console.log(totalFuel);
+console.log(part1);
+console.log(part2);
